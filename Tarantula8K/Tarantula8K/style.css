@@ -1,0 +1,206 @@
+/*
+ * Tarantula 8K — orange Gamepad Viewer skin
+ * Canvas: 1000 x 700. Use GPV's native sc parameter to scale the whole skin.
+ * Load: https://gamepadviewer.com/?p=1&css=YOUR_ENCODED_HTTPS_CSS_URL
+ * All artwork is relative to this stylesheet. No HTML or JavaScript required.
+ */
+
+html, body {
+  background: transparent !important;
+}
+
+.controller.custom {
+  width: 1000px;
+  height: 700px;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  background: url("assets/Shell.svg") 0 0 / 1000px 700px no-repeat;
+  /* GPV owns the root's display, centering, scale and connection classes. */
+}
+
+.controller.custom.disconnected {
+  opacity: 0.35;
+}
+
+.custom .quadrant,
+.custom .wheels,
+.custom .fstick,
+.custom .trigger-button,
+.custom .clear {
+  display: none;
+}
+
+/* Triggers: two static underlays and two live analog overlays.
+ * GPV sets opacity, or clip-path when smeter=1. Leave both properties native.
+ */
+.custom .triggers {
+  position: absolute;
+  z-index: 0;
+  left: 148px;
+  top: 20px;
+  width: 704px;
+  height: 48px;
+}
+
+.custom .trigger,
+.custom .triggers::before,
+.custom .triggers::after {
+  position: absolute;
+  top: 0;
+  width: 164px;
+  height: 48px;
+  background: url("assets/Triggers.svg") 0 0 / 328px 48px no-repeat;
+}
+
+.custom .triggers::before,
+.custom .triggers::after {
+  content: "";
+}
+
+.custom .trigger {
+  background-image: url("assets/TriggersActive.svg");
+  opacity: 0;
+  z-index: 1;
+}
+
+.custom .trigger.left,
+.custom .triggers::before { left: 0; }
+
+.custom .trigger.right,
+.custom .triggers::after {
+  right: 0;
+  background-position-x: -164px;
+}
+
+/* Bumpers: independent normal / pressed sprite rows. */
+.custom .bumpers {
+  position: absolute;
+  left: 136px;
+  top: 52px;
+  width: 728px;
+  height: 36px;
+}
+
+.custom .bumper {
+  position: absolute;
+  top: 0;
+  width: 181px;
+  height: 36px;
+  background: url("assets/Bumpers.svg") 0 0 / 362px 72px no-repeat;
+}
+
+.custom .bumper.left { left: 0; }
+.custom .bumper.right { right: 0; background-position-x: -181px; }
+.custom .bumper.pressed { background-position-y: -36px; }
+
+/* ABXY face buttons, matching the positions and light lettering in the photo. */
+.custom .abxy {
+  position: absolute;
+  left: 692px;
+  top: 98px;
+  width: 184px;
+  height: 179px;
+}
+
+.custom .button {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background: url("assets/FaceButtons.svg") 0 0 / 256px 128px no-repeat;
+}
+
+.custom .button.a { left: 57px; top: 115px; background-position-x: 0; }
+.custom .button.b { left: 120px; top: 58px; background-position-x: -64px; }
+.custom .button.x { left: 0; top: 57px; background-position-x: -128px; }
+.custom .button.y { left: 61px; top: 0; background-position-x: -192px; }
+.custom .button.pressed { background-position-y: -64px; }
+
+/* D-pad: four separately lit quadrants meet at the center of one cross.
+ * Diagonals and simultaneous directions remain independently visible.
+ */
+.custom .dpad {
+  position: absolute;
+  left: 137px;
+  top: 101px;
+  width: 158px;
+  height: 158px;
+}
+
+.custom .face {
+  position: absolute;
+  left: 28px;
+  top: 0;
+  width: 102px;
+  height: 80px;
+  background: url("assets/Dpad.svg") 0 0 / 102px 160px no-repeat;
+  transform-origin: 51px 79px;
+}
+
+.custom .face.up { transform: rotate(0deg); }
+.custom .face.right { transform: rotate(90deg); }
+.custom .face.down { transform: rotate(180deg); }
+.custom .face.left { transform: rotate(270deg); }
+.custom .face.pressed { background-position-y: -80px; }
+
+/* Stick caps. Neutral position is left/top; GPV alone sets the motion margins
+ * and 3D transform. The pressed rule changes only the artwork row.
+ */
+.custom .sticks {
+  position: absolute;
+  left: 286px;
+  top: 234px;
+  width: 423px;
+  height: 131px;
+}
+
+.custom .stick {
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  background: url("assets/Sticks.svg") 0 0 / 128px 256px no-repeat;
+}
+
+.custom .stick.left { left: 0; top: 0; }
+.custom .stick.right { left: 295px; top: 3px; }
+.custom .stick.pressed { background-position-y: -128px; }
+
+/* Small physical View / Share / Menu buttons.
+ * The Share artwork uses GPV's existing touch-pad channel (button 17).
+ * It lights when that channel is reported or assigned with GPV's remapper.
+ * The controller's upper black panel is a macro key, not a touchpad.
+ */
+.custom .arrows {
+  position: absolute;
+  left: 433px;
+  top: 154px;
+  width: 133px;
+  height: 36px;
+}
+
+.custom .back,
+.custom .start,
+.custom .touchpad {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background: url("assets/CenterButtons.svg") 0 0 / 102px 68px no-repeat;
+}
+
+.custom .back { left: 0; top: 0; }
+.custom .start { right: 0; top: 2px; background-position-x: -68px; }
+.custom .touchpad { left: 483px; top: 156px; background-position-x: -34px; }
+.custom .back.pressed,
+.custom .start.pressed,
+.custom .touchpad.pressed { background-position-y: -34px; }
+
+/* Home / Guide. */
+.custom .meta {
+  position: absolute;
+  left: 458px;
+  top: 239px;
+  width: 80px;
+  height: 80px;
+  background: url("assets/Home.svg") 0 0 / 80px 160px no-repeat;
+}
+
+.custom .meta.pressed { background-position-y: -80px; }
